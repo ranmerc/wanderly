@@ -170,7 +170,13 @@ export default function HomePage() {
           </button>
           <button
             className="btn primary"
-            onClick={() => showToast("Sign-in coming soon!")}
+            id="signinBtn"
+            onClick={() => {
+              alert("Sign-in coming soon!");
+              posthog.capture("button_clicked", {
+                variant: isNewUI ? "new" : "control",
+              });
+            }}
           >
             Sign in
           </button>
@@ -362,7 +368,13 @@ export default function HomePage() {
                     </button>
                     <button
                       className="book"
-                      onClick={() => openModal("Book Your Stay", t.id)}
+                      id="bookBtn"
+                      onClick={() => {
+                        alert("Booked");
+                        posthog.capture("button_clicked", {
+                          variant: isNewUI ? "new" : "control",
+                        });
+                      }}
                     >
                       Book Now
                     </button>
