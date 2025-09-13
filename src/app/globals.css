@@ -485,3 +485,29 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+.spinner-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 24, 39, 0.85); /* matches --bg with opacity */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.spinner {
+  width: 64px;
+  height: 64px;
+  border: 6px solid var(--brand);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  box-shadow: var(--shadow);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

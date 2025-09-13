@@ -109,11 +109,16 @@ export default function HomePage() {
   const toastTimer = useRef<NodeJS.Timeout | null>(null);
 
   const [isNewUI, setIsNewUI] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    if (posthog.getFeatureFlag("new-ui-appeal") === "new") {
-      setIsNewUI(true);
-    }
+    posthog.onFeatureFlags(() => {
+      if (posthog.getFeatureFlag("new-ui-appeal") === "new") {
+        setIsNewUI(true);
+      }
+
+      setIsLoaded(true);
+    });
   }, []);
 
   const filteredTrips = trips.filter((t) => {
@@ -144,6 +149,14 @@ export default function HomePage() {
     setBookingId(id);
     setShowModal(true);
   };
+
+  if (!isLoaded) {
+    return (
+      <div className="spinner-backdrop">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
 
   return (
     <div>
