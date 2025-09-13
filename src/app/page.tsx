@@ -18,7 +18,7 @@ type Trip = {
 const trips: Trip[] = [
   {
     id: 1,
-    title: "Goa Oceanfront Villa",
+    title: "Goa Oceanfront My Villa",
     tag: "beach",
     metro: "Mumbai",
     price: "₹7,999 / night",
