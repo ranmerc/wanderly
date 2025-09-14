@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import "./globals.css";
 import posthog from "posthog-js";
 
+
 type Trip = {
   id: number;
   title: string;
@@ -166,7 +167,7 @@ export default function HomePage() {
             <i>🌊</i>
             <span>VOYAGEVISTA</span>
           </div>
-          {isNewUI && (
+          
             <nav className="links">
               <a href="#search">Search</a>
               <a href="#deals">Deals</a>
@@ -174,7 +175,7 @@ export default function HomePage() {
               <a href="#about">About</a>
               <a href="#contact">Contact</a>
             </nav>
-          )}
+          
           <button
             className="btn ghost"
             onClick={() => openModal("Free Trip Consultation")}
@@ -229,7 +230,7 @@ export default function HomePage() {
           </div>
 
           {/* Search */}
-          {isNewUI && (
+       
             <div id="search" className="hero-card">
               <div className="grid search-grid">
                 <div className="field">
@@ -284,47 +285,85 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-          )}
+        
         </div>
       </section>
 
-      {/* Deals carousel */}
-      {isNewUI && (
-        <section id="deals" className="section">
-          <h2 className="h2">Hot Deals This Week</h2>
-          <p className="note">
-            Limited-time savings on handpicked short-breaks.
-          </p>
-          <div className="carousel">
-            <div
-              className="slides"
-              style={{ transform: `translateX(-${carouselIdx * 100}%)` }}
-            >
-              {[
-                "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=1600&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1600&auto=format&fit=crop",
-              ].map((src, i) => (
-                <div className="slide" key={i}>
-                  <img src={src} alt={`slide-${i}`} />
-                </div>
-              ))}
+      
+           
+ {/* Deals carousel */}
+{isNewUI && (
+  <section id="deals" className="section">
+    <h2 className="h2">Hot Deals This Week</h2>
+    <p className="note">Limited-time savings on handpicked short-breaks.</p>
+
+    <div className="deals-flex">
+      {/* IMAGE CAROUSEL */}
+      <div className="carousel">
+        <div
+          className="slides"
+          style={{ transform: `translateX(-${carouselIdx * 100}%)` }}
+        >
+          {[
+            "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=1600&auto=format&fit=crop",
+            "https://media.istockphoto.com/id/1166378619/photo/large-group-of-happy-friends-in-mountains-area.jpg?s=612x612&w=0&k=20&c=PRlOrqCmlc7QEpTtQw5Blk5NlTtQzT8osgFDK8059p0=",
+          ].map((src, i) => (
+            <div className="slide" key={i}>
+              <img src={src} alt={`slide-${i}`} />
             </div>
-            <button
-              className="cbtn left"
-              onClick={() => setCarouselIdx((i) => (i - 1 + 3) % 3)}
-            >
-              ◀
-            </button>
-            <button
-              className="cbtn right"
-              onClick={() => setCarouselIdx((i) => (i + 1) % 3)}
-            >
-              ▶
-            </button>
-          </div>
-        </section>
-      )}
+          ))}
+        </div>
+        <button
+          className="cbtn left"
+          onClick={() => setCarouselIdx((i) => (i - 1 + 3) % 3)}
+        >
+          ◀
+        </button>
+        <button
+          className="cbtn right"
+          onClick={() => setCarouselIdx((i) => (i + 1) % 3)}
+        >
+          ▶
+        </button>
+      </div>
+
+      {/* TESTIMONIAL CAROUSEL */}
+      <div className="testimonial">
+  <h4>Happy Travellers</h4>
+  <p className="stars">★★★★★</p>
+
+  <div className="testimonial-scroll">
+   
+    <div className="review-card">
+      <blockquote>
+        “Excellent service at reasonable price”
+      </blockquote>
+      <p>— K. Sharma</p>
+    </div>
+    <div className="review-card">
+      <blockquote>
+        Loved the curated villas. Will book again”
+      </blockquote>
+      <p>— P. Iyer</p>
+    </div>
+    </div>
+
+ 
+  </div>
+    </div>
+  </section>
+)}
+
+
+
+
+
+
+
+{
+  
+}
 
       {/* Cards */}
       <section id="popular" className="section">
@@ -422,6 +461,7 @@ export default function HomePage() {
             </p>
           </div>
           <div className="pill">
+            <div>
             <h3>Business Overview</h3>
             <ul>
               <li>Boutique operator near metros.</li>
@@ -440,10 +480,12 @@ export default function HomePage() {
               visible CTAs, social proof, and simpler flows.
             </p>
           </div>
+          </div>
         </div>
       </section>
-
+   
       {/* Testimonials */}
+       { isNewUI && (
       <section className="section trust">
         <div className="pill">
           <h3>Happy Travellers</h3>
@@ -471,8 +513,10 @@ export default function HomePage() {
           </button>
         </div>
       </section>
+       )}
 
       {/* Contact */}
+      { isNewUI && (
       <section id="contact" className="section">
         <div className="lead">
           <input id="leadName" placeholder="Your name" />
@@ -489,7 +533,9 @@ export default function HomePage() {
           We’ll respond within business hours. Zero spam. Only trip magic.
         </p>
       </section>
-
+        )}  
+      
+    
       {/* Footer */}
       <footer>
         <div className="foot">
